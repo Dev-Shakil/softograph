@@ -5,7 +5,73 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
 }
+#canvas {
+  height: 90vh;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10; /* Ensure it's above the gradient and blob */
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent background to separate content */
+  color: white; /* Add some padding for spacing */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional shadow for separation */
+}
 
+.outer {
+position: relative !important;
+width: 100%;
+height: 90vh;
+background: #0E1424;
+}
+
+.blob-outer-container {
+position: absolute !important;
+height: 100%;
+width: 100%;
+z-index: 1; /* Lower than .blob to avoid hiding content */
+inset: 0;
+margin: auto;
+filter: blur(100px);
+}
+
+.blob-inner-container {
+border-radius: 9999px;
+position: absolute;
+inset: 0;
+margin: auto;
+width: 100vw;
+height: 90vh;
+overflow: hidden;
+background-color: white;
+transform: scale(0.6);
+}
+
+.blob {
+position: fixed;
+width: 100%;
+height: 100%;
+inset: 0;
+z-index: 1; /* Ensure it is on top */
+display: flex;
+flex-direction: column; /* Stack content vertically */
+justify-content: center;
+align-items: center;
+color: white;
+font-size: 1.5rem;
+text-align: center;
+margin: auto;
+background: conic-gradient(from 0deg, #08f, #f60, #bbffa1, #4c00ff, #ab2666);
+animation: spinBlob 8s linear infinite;
+}
+@keyframes spinBlob{
+0%{
+  transform: rotate(0deg) scale(2);
+}
+100%{
+  transform:rotate(1turn) scale(2)
+}
+}
 nav {
     display: flex;
     justify-content: space-between;
@@ -202,13 +268,13 @@ nav {
     display:block;
     border:none;
   }
-
   .banner .slogan{
     color:#FFFFFF;
     font-weight: 300;
     font-size:42px;
     padding:0;
     margin:0;
+    z-index:999;
   }
   
   .business_moto h2{
@@ -343,20 +409,8 @@ nav {
 
 /* Media Query for Desktop */
 
-#canvas {
-    background:#0f162a;
-    height: 90vh;
-    width: 100%;
-    display:flex;
-    flex-direction:column;
-    justify-content: space-between;
-}
-.demo-3 {
-	--color-text: #1ed97c;
-	--color-link: #fff;
-	--color-link-hover: #fff;
-	--color-title: #fff;
-}
+
+
 .intro{
     color:#FFFFFF;
     font-weight: 300;
@@ -785,8 +839,3 @@ margin:0 auto;
     gap:10px;
   }
   
-canvas {
-    position: relative;
-    z-index: 1;
-    /* Additional styling for your content */
-}
